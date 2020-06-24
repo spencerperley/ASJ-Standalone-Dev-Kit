@@ -92,4 +92,6 @@ public class Point {
         return midpoint;
     }
 
+    public class WayPoint {
+    }
 }

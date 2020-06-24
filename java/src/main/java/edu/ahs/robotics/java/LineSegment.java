@@ -25,5 +25,13 @@ public class LineSegment {
         return points;
 
     }
+
+    public Point interpolateLineSegment (double distanceFromFirstPoint){
+        double xDifference = (point2.getX())-(point1.getX());
+        double yDifference = (point2.getY())-(point1.getY());
+        double totalLengthRatio = distanceFromFirstPoint/(Point.distanceBeetweenTwoPoints(point1,point2));
+        return new Point((xDifference*totalLengthRatio)+point1.getX(),(yDifference*totalLengthRatio)+point1.getY());
+
+    }
     
 }

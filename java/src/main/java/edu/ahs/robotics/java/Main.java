@@ -10,13 +10,16 @@ public class Main {
         randomPoints[4]=new Point(1,-5);
 
         Point a = new Point(1,1);
-        Point c = new Point(8,18);
+        Point c = new Point(3,3);
         Point d = new Point(12,-45);
         LineSegment b= new LineSegment(c,d);
-        b.subDivide(5);
+
         System.out.println(Point.numberOfPoints());
         System.out.println(a.distanceToPoint(c));
         System.out.println(a.findClosestPointFromArray(randomPoints));
+        System.out.println(b.interpolateLineSegment(-5));
+
+
 
     }
 
