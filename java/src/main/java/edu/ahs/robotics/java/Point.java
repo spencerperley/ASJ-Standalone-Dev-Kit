@@ -84,4 +84,12 @@ public class Point {
         return pointOne.distanceToPoint(pointTwo);
     }
 
+    public static Point midpointBeetweenTwoPoints(Point pointOne,Point pointTwo){
+        Point midpoint;
+        LineSegment twoPoints = new LineSegment(pointOne,pointTwo);
+        Point[] midList = twoPoints.subDivide(2);
+        midpoint=midList[0];
+        return midpoint;
+    }
+
 }
