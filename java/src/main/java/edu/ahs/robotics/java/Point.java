@@ -3,9 +3,11 @@ package edu.ahs.robotics.java;
 public class Point {
     private double x;
     private double y;
+    private static int countPoints = 0;
     public Point (double x, double y){
         this.x=x;
         this.y=y;
+        countPoints++;
     }
 
     public double getX() {
@@ -53,6 +55,33 @@ public class Point {
         else {
             return null;
         }
+    }
+    public static String numberOfPoints(){
+
+        return "There are " + countPoints +" points";
+    }
+
+    public double distanceToPoint(Point secondPoint){
+        double xSquare = Math.pow(x-secondPoint.getX(),2);
+        double ySquare = Math.pow(y-secondPoint.getY(),2);
+        return Math.sqrt(xSquare+ySquare);
+    }
+
+    public Point findClosestPointFromArray(Point[] points){
+        Point closestPoint= points[0];
+        int sizeOfList = points.length;
+        for (int i = 1; i <sizeOfList; i++) {
+            if (this.distanceToPoint(closestPoint)>this.distanceToPoint(points[i])){
+                closestPoint=points[i];
+            }
+
+
+        }
+        return closestPoint;
+    }
+
+    public static double distanceBeetweenTwoPoints(Point pointOne,Point pointTwo){
+        return pointOne.distanceToPoint(pointTwo);
     }
 
 }

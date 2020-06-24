@@ -9,9 +9,9 @@ public class LineSegmentTest {
     @Test
     public void subDevide() {
         Point[] pointsExpected = new Point[2];
-        pointsExpected[0]=new Point(1,1); pointsExpected[1]= new Point(2,2);
-        Point point1 = new Point(0,0);
-        Point point2 = new Point(3,3);
+        pointsExpected[0]=new Point(2,2); pointsExpected[1]= new Point(3,3);
+        Point point1 = new Point(1,1);
+        Point point2 = new Point(4,4);
         LineSegment lineSegment = new LineSegment(point1,point2);
         Point[] pointsActual = lineSegment.subDivide(3);
         for (int i = 0; i <pointsActual.length ; i++) {

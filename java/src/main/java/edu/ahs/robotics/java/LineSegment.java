@@ -25,4 +25,5 @@ public class LineSegment {
         return points;
 
     }
+    
 }

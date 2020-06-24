@@ -18,5 +18,9 @@ public class PointTest {
         assertEquals("Axis",new Point(0,-7).getQuadrant());
         assertEquals("Axis",new Point(12,0).getQuadrant());
         assertEquals("Origin",new Point(0,0).getQuadrant());
+        assertEquals(5,new Point(1,1).distanceToPoint(new Point(4,5)),.00001);
+        assertEquals(12,new Point(1,1).distanceToPoint(new Point(1,-11)),.00001);
     }
+
+
 }
