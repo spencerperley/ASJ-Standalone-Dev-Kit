@@ -1,5 +1,7 @@
 package edu.ahs.robotics.java;
 
+import java.util.List;
+
 public class Path {
 
     public static class WayPoint{
@@ -9,10 +11,12 @@ public class Path {
             this.wayPoint = wayPoint;
         }
     }
+    List wayPoints;
 
     public Path(Point[] rawPoints){
         for (int i = 0; i <(rawPoints.length)+1; i++) {
             if (rawPoints[i]!=rawPoints[i+1]){
+                wayPoints.add(new WayPoint(rawPoints[i]));
 
             }
 
