@@ -1,21 +1,28 @@
 package edu.ahs.robotics.java;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Path {
 
     public static class WayPoint{
-        private Point wayPoint;
+        public Point point;
 
-        public WayPoint(Point wayPoint) {
-            this.wayPoint = wayPoint;
+        public WayPoint(Point point) {
+            this.point = point;
         }
     }
-    List wayPoints;
+    private ArrayList<WayPoint> wayPoints;
+
 
     public Path(Point[] rawPoints){
-        for (int i = 0; i <(rawPoints.length)+1; i++) {
-            if (rawPoints[i]!=rawPoints[i+1]){
+        wayPoints=new ArrayList<>();
+        wayPoints.add(new WayPoint((rawPoints[0])));
+        int j = 0;
+        for (int i = 1; i <(rawPoints.length); i++) {
+            if (rawPoints[i]!=wayPoints.get(j).point){
+                j++;
                 wayPoints.add(new WayPoint(rawPoints[i]));
 
             }
@@ -25,12 +32,13 @@ public class Path {
 
 
     public double totalLengthOfPath(){
+        double distance=0.0;
 
-        for (int i = 0; i < wayPoints.size(); i++) {
-            double distance=distance+ (wayPoints[i].distanceToPoint(wayPoints[i+1]);
+        for (int i = 1; i < wayPoints.size(); i++) {
+            distance= distance + (wayPoints.get(i-1).point.distanceToPoint(wayPoints.get(i).point));
 
         }
-        return ;
+        return distance;
     }
 
 
