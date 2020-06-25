@@ -17,19 +17,21 @@ public class Path {
 
 
     public Path(Point[] rawPoints){
+
         wayPoints=new ArrayList<>();
         wayPoints.add(new WayPoint((rawPoints[0])));
         int j = 0;
         for (int i = 1; i <(rawPoints.length); i++) {
-            if (rawPoints[i]!=wayPoints.get(j).point){
+            if (!rawPoints[i].equals(wayPoints.get(j).point)) {
                 j++;
                 wayPoints.add(new WayPoint(rawPoints[i]));
-
             }
-
         }
     }
 
+    public ArrayList<WayPoint> getWayPoints() {
+        return wayPoints;
+    }
 
     public double totalLengthOfPath(){
         double distance=0.0;
