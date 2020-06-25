@@ -25,10 +25,16 @@ public class Path {
 
 
     public double totalLengthOfPath(){
-        return 0.0;
+
+        for (int i = 0; i < wayPoints.size(); i++) {
+            double distance=distance+ (wayPoints[i].distanceToPoint(wayPoints[i+1]);
+
+        }
+        return ;
     }
 
-    public Path.WayPoint targetPoint(Point curent, double distance){
+
+    public Path.WayPoint targetPoint(Point current, double distance){
         return new WayPoint(new Point(0,0));
     }
 }
