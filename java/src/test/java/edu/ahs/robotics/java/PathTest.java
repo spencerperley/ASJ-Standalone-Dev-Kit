@@ -16,7 +16,7 @@ public class PathTest {
         ArrayList<Path.WayPoint> foundWayPoint = path.getWayPoints();
         assertEquals(expected.length,foundWayPoint.size());
         for (int i = 0; i < expected.length; i++) {
-            assertEquals(expected[i], foundWayPoint.get(i).point);
+            assertEquals(expected[i], foundWayPoint.get(i).getPoint());
         }
 
 

@@ -17,7 +17,7 @@ public class Main {
         Path testPath = new Path(randomPoints);
 
 
-        System.out.println(testPath.totalLengthOfPath());
+        System.out.println(testPath.targetPoint(c,3).getPoint());
 
 
 
