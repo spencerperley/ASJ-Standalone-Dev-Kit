@@ -25,7 +25,7 @@ public class Path {
     public Path(Point[] rawPoints){
 
         wayPoints=new ArrayList<>();
-        wayPoints.add(new WayPoint.((rawPoints[0])));
+        wayPoints.add(new WayPoint.(rawPoints[0]));
         int j = 0;
         for (int i = 1; i <(rawPoints.length); i++) {
             if (!rawPoints[i].equals(wayPoints.get(j).point)) {
