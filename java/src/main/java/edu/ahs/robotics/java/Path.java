@@ -77,13 +77,14 @@ public class Path {
             }
         }
         for (int i = indexOfNextPoint; i <wayPoints.size()-indexOfNextPoint; i++) {
-            acumulatedDistance=acumulatedDistance+( wayPoints.get(i).getPoint().distanceToPoint(wayPoints.get(i+1).getPoint()));
+            acumulatedDistance=acumulatedDistance+(wayPoints.get(i).getPoint().distanceToPoint(wayPoints.get(i+1).getPoint()));
             if (acumulatedDistance+componentAlongPath(current,wayPoints.get(indexOfNextPoint))>distance){
                 indexOfInterpolatedPoint=i;
+                acumulatedDistance=acumulatedDistance+componentAlongPath(current,wayPoints.get(indexOfNextPoint))-(wayPoints.get(i).getPoint().distanceToPoint(wayPoints.get(i+1).getPoint()));
                 break;
             }
         }
-        Point targetPoint = toInterpolate.interpolateLineSegment(acumulatedDistance+componentAlongPath(current,wayPoints.get(indexOfNextPoint)));
+        Point targetPoint = toInterpolate.interpolateLineSegment(acumulatedDistance-distance);
         double xFromPrevious = wayPoints.get(indexOfInterpolatedPoint).getPoint().getX()-targetPoint.getX();
         double yFromPrevious = wayPoints.get(indexOfInterpolatedPoint).getPoint().getY()-targetPoint.getY();
         double distanceFromPrevious = targetPoint.distanceToPoint(wayPoints.get(indexOfInterpolatedPoint).getPoint());
