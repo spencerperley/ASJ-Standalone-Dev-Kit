@@ -7,7 +7,7 @@ import java.util.List;
 public class Path {
 
     public static class WayPoint{
-        public Point point;
+        private Point point;
         private double deltaXFroPrevious;
         private double deltaYFroPrevious;
         private double distanceFromPrevious;
@@ -17,6 +17,11 @@ public class Path {
             this.deltaXFroPrevious = deltaXFroPrevious;
             this.deltaYFroPrevious = deltaYFroPrevious;
             this.distanceFromPrevious = distanceFromPrevious;
+
+        }
+
+        public Point getPoint() {
+            return point;
         }
     }
     private ArrayList<WayPoint> wayPoints;
@@ -25,12 +30,16 @@ public class Path {
     public Path(Point[] rawPoints){
 
         wayPoints=new ArrayList<>();
-        wayPoints.add(new WayPoint.(rawPoints[0]));
+        wayPoints.add(new WayPoint((rawPoints[0]),0.0,0.0,0.0));
         int j = 0;
         for (int i = 1; i <(rawPoints.length); i++) {
             if (!rawPoints[i].equals(wayPoints.get(j).point)) {
                 j++;
-                wayPoints.add(new WayPoint(rawPoints[i]));
+                int lengthOfArrayList = wayPoints.size();
+                double xFromPrevious = wayPoints.get(lengthOfArrayList-1).getPoint().getX()-(rawPoints[i].getX());
+                double yFromPrevious = wayPoints.get(lengthOfArrayList-1).getPoint().getY()-(rawPoints[i].getY());
+                double distanceFromPrevious = wayPoints.get(lengthOfArrayList-1).getPoint().distanceToPoint(rawPoints[i]);
+                wayPoints.add(new WayPoint(rawPoints[i],xFromPrevious,yFromPrevious,distanceFromPrevious));
             }
         }
     }
