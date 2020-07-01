@@ -23,11 +23,11 @@ public class PathTest {
 
     }
     @Test
-    public void componentAlongPath(){
-        Point[] points = new Point[] {new Point(0,1), new Point(0,10)};
-        Point point = new Point(0,1);
+    public void targetPoint(){
+        Point[] points = new Point[] {new Point(0,0), new Point(2,1), new Point(3,2), new Point(4,4), new Point(4,20)};
+        Point point = new Point(3,3);
         Path path = new Path(points);
-        assertEquals(9.0,path.componentAlongPath(point,path.getWayPoints().get(1)),0.00001);
+        assertEquals(8.658,path.targetPoint(point,6).getPoint().getY(),0.01);
     }
 
 

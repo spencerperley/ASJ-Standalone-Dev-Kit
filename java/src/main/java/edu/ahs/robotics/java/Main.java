@@ -13,7 +13,9 @@ public class Main {
         Point d = new Point(10,5);
         Path testPath = new Path(randomPoints);
 
-        Point z = (testPath.targetPoint(c,6).getPoint());
+        //Point z = (testPath.targetPoint(c,6).getPoint());
+
+       int z = (randomPoints.length);
 
 
         System.out.println(z);

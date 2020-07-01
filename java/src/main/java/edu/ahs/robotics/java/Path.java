@@ -77,53 +77,32 @@ public class Path {
         }
 
         Point[] points;
-        points = new Point[wayPoints.size()-indexOfNextPoint];
+        points = new Point[wayPoints.size()-indexOfNextPoint+1];
+        double distanceToInterpolate=0.0;
 
         LineSegment toBeInterpolatedToFindPointZero = new LineSegment(wayPoints.get(indexOfNextPoint).getPoint(),wayPoints.get(indexOfNextPoint-1).getPoint());
         points[0]=toBeInterpolatedToFindPointZero.interpolateLineSegment(componentAlongPath(current,wayPoints.get(indexOfNextPoint)));
         double acumulatedDistance = 0.0;
         for (int i = 1; i < points.length ; i++) {
-            points[i]= wayPoints.get(indexOfNextPoint+i).getPoint();
+            points[i]= wayPoints.get((indexOfNextPoint-1)+i).getPoint();
             acumulatedDistance += points[i].distanceToPoint(points[i-1]);
             if (acumulatedDistance>distance){
-                double acumulatedDistanceOfNonEndPoints =acumulatedDistance-points[i].distanceToPoint(points[i-1]);
+                distanceToInterpolate = distance-(acumulatedDistance-points[i].distanceToPoint(points[i-1]));
                 break;
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        for (int i = indexOfNextPoint-1; i <wayPoints.size()-(indexOfNextPoint)-1; i++) {
-            if (acumulatedDistance>distance && i== indexOfNextPoint-1){
-                return new WayPoint();
-            }else{
-                if (acumulatedDistance>distance){
-                    indexOfInterpolatedPoint=i;
-                    break;
-                }else{
-                    acumulatedDistance=acumulatedDistance+(wayPoints.get(i).getPoint().distanceToPoint(wayPoints.get(i+1).getPoint()));
-                }
-            }
-
-
+        /*if (points.length<2){
+            throw new IllegalArgumentException("u dumb, path needs to be longer than 1 point");
         }
-        LineSegment toInterpolate = new LineSegment(wayPoints.get(indexOfInterpolatedPoint).getPoint(),wayPoints.get(indexOfInterpolatedPoint+1).getPoint());
-        Point targetPoint = toInterpolate.interpolateLineSegment(acumulatedDistance-distance);
-        double xFromPrevious = wayPoints.get(indexOfInterpolatedPoint).getPoint().getX()-targetPoint.getX();
-        double yFromPrevious = wayPoints.get(indexOfInterpolatedPoint).getPoint().getY()-targetPoint.getY();
-        double distanceFromPrevious = targetPoint.distanceToPoint(wayPoints.get(indexOfInterpolatedPoint).getPoint());
+*/
+
+
+        LineSegment toInterpolate = new LineSegment(points[(points.length)-2],points[points.length-1]);
+        Point targetPoint = toInterpolate.interpolateLineSegment(distanceToInterpolate);
+        double xFromPrevious = targetPoint.getX() - points[(points.length)-2].getX();
+        double yFromPrevious = targetPoint.getY() - points[(points.length)-2].getY();;
+        double distanceFromPrevious = targetPoint.distanceToPoint( points[(points.length)-2] );
         return new WayPoint(targetPoint,xFromPrevious,yFromPrevious,distanceFromPrevious);
     }
 
