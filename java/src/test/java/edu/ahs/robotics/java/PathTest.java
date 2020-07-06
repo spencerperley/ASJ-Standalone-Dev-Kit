@@ -23,11 +23,22 @@ public class PathTest {
 
     }
     @Test
-    public void targetPoint(){
+    public void targetPoint1(){
         Point[] points = new Point[] {new Point(0,0), new Point(2,1), new Point(3,2), new Point(4,4), new Point(4,20)};
         Point point = new Point(3,3);
         Path path = new Path(points);
         assertEquals(8.658,path.targetPoint(point,6).getPoint().getY(),0.01);
+    }
+
+    @Test
+    public void targetPoint2(){
+        Point[] points = new Point[] {new Point(0,0), new Point(1,3), new Point(5,4), new Point(4,8), new Point(0,9)};
+        Point point = new Point(2,2);
+        Path path = new Path(points);
+        assertEquals(6.53,path.targetPoint(point,6).getPoint().getY(),0.01);
+
+
+
     }
 
 

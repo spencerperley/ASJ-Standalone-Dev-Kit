@@ -2,23 +2,13 @@ package edu.ahs.robotics.java;
 
 public class Main {
     public static void main(String[] args) {
-        Point[] randomPoints = new Point[2];
-        randomPoints[0]=new Point(0,0);
-        randomPoints[1]=new Point(0,10);
+
+        Point[] points = new Point[] {new Point(0,0), new Point(1,3), new Point(5,4), new Point(4,8), new Point(0,9)};
+        Point point = new Point(2,2);
+        Path path = new Path(points);
 
 
-        Point a = new Point(1,1);
-        Point x = new Point(1,1);
-        Point c = new Point(0,1);
-        Point d = new Point(10,5);
-        Path testPath = new Path(randomPoints);
-
-        //Point z = (testPath.targetPoint(c,6).getPoint());
-
-       int z = (randomPoints.length);
-
-
-        System.out.println(z);
+        System.out.println(path.targetPoint(point,6).getPoint());
 
 
 
